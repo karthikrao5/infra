@@ -12,7 +12,7 @@ locals {
 terraform {
   backend "s3" {
     bucket = "kr-infra-tf-state"
-    key = "env/dev"
+    key = "env/prod"
     region = "us-east-1"
   }
 }
@@ -53,13 +53,13 @@ module "vpc_network" {
 //}
 
 
-module "eks_cluster" {
-  source = "./modules/eks"
+# module "eks_cluster" {
+#   source = "./modules/eks"
 
-#   rds-sg = module.vpc_network.rds-sg
-  private_subnets_cidr = var.private_subnets_cidr
-  environment = var.environment
-  vpc_id = module.vpc_network.vpc_id
-  private_subnets = module.vpc_network.private_subnets
-  cluster_name = local.cluster_name
-}
+# #   rds-sg = module.vpc_network.rds-sg
+#   private_subnets_cidr = var.private_subnets_cidr
+#   environment = var.environment
+#   vpc_id = module.vpc_network.vpc_id
+#   private_subnets = module.vpc_network.private_subnets
+#   cluster_name = local.cluster_name
+# }
